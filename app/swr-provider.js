@@ -1,11 +1,18 @@
 "use client";
-import { SWRConfig } from "swr";
+import { SWRConfig, unstable_serialize } from "swr";
 export const SWRProvider = ({ children, fallbackData }) => {
-  return <SWRConfig value={{ 
-    fallback:{
-      'albums': fallbackData.albums,
-      'comments': fallbackData.comments
-    },
-    revalidateOnMount: true  
-  }}>{children}</SWRConfig>;
+  console.log(unstable_serialize(["albums", "1"]))
+  return (
+    <SWRConfig
+      value={{
+        fallback: {
+          [unstable_serialize(["albums", "1"])]: fallbackData.albums,
+          [unstable_serialize(["comments", "1"])]: fallbackData.comments,
+        },
+        revalidateOnMount: true,
+      }}
+    >
+      {children}
+    </SWRConfig>
+  );
 };
