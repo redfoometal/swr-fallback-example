@@ -15,13 +15,13 @@ const fetcher = async (url) => {
 
 const Client = () => {
   const { data: albums } = useSWR(
-    "https://jsonplaceholder.typicode.com/albums",
-    fetcher
+    "albums",
+    () => fetcher("https://jsonplaceholder.typicode.com/albums"),
   );
 
   const { data: comments } = useSWR(
-    "https://jsonplaceholder.typicode.com/comments",
-    fetcher
+    "comments",
+    () => fetcher("https://jsonplaceholder.typicode.com/comments"),
   );
 
   return (

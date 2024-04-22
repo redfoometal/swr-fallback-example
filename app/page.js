@@ -1,9 +1,7 @@
-import { unstable_serialize } from "swr";
 import Client from "./Client";
-import styles from "./page.module.css";
 import { SWRProvider } from "./swr-provider";
 
-export default async function Home({ fallback }) {
+export default async function Home() {
   const albums = await (
     await fetch("https://jsonplaceholder.typicode.com/albums")
   ).json();
@@ -21,7 +19,7 @@ export default async function Home({ fallback }) {
   };
 
   return (
-    <main className={styles.main}>
+    <main>
       <SWRProvider fallbackData={fallbackData}>
         <Client />
       </SWRProvider>
