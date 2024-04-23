@@ -4,6 +4,7 @@ import { SWRConfig, unstable_serialize } from "swr";
 import { unstable_serialize as infinite_unstable_serialize } from "swr/infinite";
 
 export const SWRProvider = ({ children, fallbackData }) => {
+
   return (
     <SWRConfig
       value={{

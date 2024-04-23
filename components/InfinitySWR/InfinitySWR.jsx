@@ -17,6 +17,7 @@ const InfinitySWR = () => {
     fetcher,
     {
       revalidateFirstPage: false,
+      revalidateOnMount: false,
     }
   );
 
@@ -45,7 +46,14 @@ const InfinitySWR = () => {
   }, [isValidating]);
 
   if (!data) return "loading";
-
+  // useEffect(() => {
+  //   mutate(
+  //     "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=10",
+  //     data
+  //   );
+  // }, []);
+  // mutate(data, false)
+  console.log(data);
   return (
     <div>
       <p>Infinite Load</p>
