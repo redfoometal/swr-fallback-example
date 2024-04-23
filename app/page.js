@@ -1,27 +1,24 @@
-import Client from "./Client";
-import { SWRProvider } from "./swr-provider";
+import SimpleSWR from "../components/SimpleSWR/SimpleSWR";
+import { SWRProvider } from "../provider/swr-provider";
 
 export default async function Home() {
   const albums = await (
-    await fetch("https://jsonplaceholder.typicode.com/albums")
+    await fetch("https://jsonplaceholder.typicode.com/albums?_limit=5")
   ).json();
 
   const comments = await (
-    await fetch("https://jsonplaceholder.typicode.com/comments")
+    await fetch("https://jsonplaceholder.typicode.com/comments?_limit=5")
   ).json();
 
-  const firstFiveAlbums = albums.slice(0, 5);
-  const firstFiveComments = comments.slice(0, 5);
-
   const fallbackData = {
-    albums: firstFiveAlbums,
-    comments: firstFiveComments,
+    albums: albums,
+    comments: comments,
   };
 
   return (
     <main>
       <SWRProvider fallbackData={fallbackData}>
-        <Client />
+        <SimpleSWR />
       </SWRProvider>
     </main>
   );

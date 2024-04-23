@@ -13,14 +13,14 @@ const fetcher = async (url) => {
   return response.json();
 };
 
-const Client = () => {
+const SimpleSWR = () => {
   const { data: albums } = useSWR(
-    ["albums", "1"],
+    ["albums"],
     () => fetcher("https://jsonplaceholder.typicode.com/albums"),
   );
 
   const { data: comments } = useSWR(
-    ["comments ", "1"],
+    ["comments"],
     () => fetcher("https://jsonplaceholder.typicode.com/comments"),
   );
 
@@ -51,4 +51,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default SimpleSWR;
